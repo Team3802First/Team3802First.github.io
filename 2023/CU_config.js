@@ -12,7 +12,7 @@ var config_data = `
       "required": "true"
     },
     { "name": "Event",
-      "code": "e",
+      "code": "2020mokc",
       "type": "event",
       "defaultValue": "2020mokc",
       "required": "true",
