@@ -12,7 +12,7 @@ var config_data = `
       "required": "true"
     },
     { "name": "Event",
-      "code": "ilch",
+      "code": "2020ilch",
       "type": "event",
       "defaultValue": "2020ilch",
       "required": "true",
