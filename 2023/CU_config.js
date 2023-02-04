@@ -14,7 +14,7 @@ var config_data = `
     { "name": "Event",
       "code": "e",
       "type": "event",
-      "defaultValue": "2020ilch",
+      "defaultValue": "2020mokc",
       "required": "true",
       "disabled": "true"
     },
