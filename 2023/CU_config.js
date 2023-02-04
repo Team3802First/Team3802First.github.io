@@ -12,9 +12,9 @@ var config_data = `
       "required": "true"
     },
     { "name": "Event",
-      "code": "2020mokc",
+      "code": "e",
       "type": "event",
-      "defaultValue": "2020mokc",
+      "defaultValue": "2023TXBEL",
       "required": "true",
       "disabled": "true"
     },
