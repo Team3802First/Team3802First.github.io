@@ -12,9 +12,9 @@ var config_data = `
       "required": "true"
     },
     { "name": "Event",
-      "code": "TXBEL",
+      "code": "ILCH",
       "type": "event",
-      "defaultValue": "2023TXBEL",
+      "defaultValue": "2020ILCH",
       "required": "true",
       "disabled": "true"
     },
