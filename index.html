@@ -1,270 +1,101 @@
-var config_data = `
-{
-  "title": "Scouting PASS 2023",
-  "page_title": "Charged Up",
-  "checkboxAs": "10",
-  "enable_google_sheets": "true",
-  "prematch": [
-    { "name": "Scouter Initials",
-      "code": "s",
-      "gsCol": "scouter",
-      "type": "scouter",
-      "size": 5,
-      "maxSize": 5,
-      "required": "true"
-    },
-    { "name": "Event",
-      "code": "e",
-      "gsCol": "event",
-      "type": "event",
-      "defaultValue": "2022carv",
-      "required": "true",
-      "disabled": "true"
-    },
-    { "name": "Match Level",
-      "code": "l",
-      "gsCol": "level",
-      "type": "level",
-      "choices": {
-        "qm": "Quals<br>",
-        "de": "Double Elimination<br>",
-        "f": "Finals"
-      },
-      "defaultValue": "qm",
-      "required": "true"
-    },
-    { "name": "Match #",
-      "code": "m",
-      "gsCol": "matchNum",
-      "type": "match",
-      "min": 1,
-      "max": 100,
-      "required": "true"
-    },
-    { "name": "Robot",
-      "code": "r",
-      "gsCol": "robot",
-      "type": "robot",
-      "choices": {
-        "r1": "Red-1",
-        "b1": "Blue-1<br>",
-        "r2": "Red-2",
-        "b2": "Blue-2<br>",
-        "r3": "Red-3",
-        "b3": "Blue-3"
-      },
-      "required":"true"
-    },
-    { "name": "Team #",
-      "code": "t",
-      "gsCol": "teamNum",
-      "type": "team",
-      "min": 1,
-      "max": 99999
-    },
-    { "name": "Auto Start Position",
-      "code": "as",
-      "gsCol": "autoStartPosition",
-      "type": "field_image",
-      "filename": "2023/field_image.png",
-      "clickRestriction": "one",
-      "shape": "circle 5 black red true"
-    }
-  ],
-  "auton": [
-    { "name": "Auto Scoring",
-      "code": "asg",
-      "gsCol": "autoScoringGrid",
-      "type": "clickable_image",
-      "filename": "2023/grid_image.png",
-      "dimensions": "9 4",
-      "clickRestriction": "onePerBox",
-      "toggleClick": "true",
-      "showFlip": "false",
-      "showUndo": "false",
-      "shape": "circle 12 black red true"
-    },
-    { "name": "Crossed Cable",
-      "code": "acc",
-      "gsCol": "autoCrossedCable",
-      "type": "bool"
-    },
-    { "name": "Crossed Charging Station",
-      "code": "acs",
-      "gsCol": "autoCrossedCharginStation",
-      "type": "bool"
-    },
-    { "name": "Mobility?",
-      "code": "am",
-      "gsCol": "autoMobility",
-      "type": "bool"
-    },
-    { "name": "Docked",
-      "code": "ad",
-      "gsCol": "autoDocked",
-      "type":"radio",
-      "choices": {
-        "d": "Docked (not Engaged)<br>",
-        "e": "Engaged<br>",
-        "a": "Attempted but failed<br>",
-        "x": "Not attempted"
-      },
-      "defaultValue": "x"
-    }
-  ],
-  "teleop": [
-    { "name": "Cycle Timer",
-      "code": "tct",
-      "gsCol": "cycleTimes",
-      "type": "cycle"
-    },
-    { "name": "Grid Scoring",
-      "code": "tsg",
-      "gsCol": "gridScoring",
-      "type": "clickable_image",
-      "filename": "2023/grid_image.png",
-      "dimensions": "9 4",
-      "clickRestriction": "onePerBox",
-      "toggleClick": "true",
-      "showFlip": "false",
-      "showUndo": "false",
-      "shape": "circle 12 black red true",
-      "cycleTimer": "tct"
-    },
-    { "name": "Feeder Count<br>(Fed another bot)",
-      "code": "tfc",
-      "gsCol": "feedCount",
-      "type": "counter"
-    },
-    { "name": "Was Defended",
-      "code": "wd",
-      "gsCol": "wasDefended",
-      "type": "bool"
-    },
-    { "name": "Who Defended this bot<br>(Team #)",
-      "code": "who",
-      "gsCol": "defenderTeamNum",
-      "type": "text"
-    },
-    { "name": "Smart Placement<br>(creates Links)",
-      "code": "lnk",
-      "gsCol": "smartPlacement",
-      "type": "bool"
-    },
-    { "name": "Floor Pick UP",
-      "code": "fpu",
-      "gsCol": "floorPickUp",
-      "type": "radio",
-      "choices": {
-        "o": "Cone<br>",
-        "u": "Cube<br>",
-        "b": "Both<br>",
-        "x": "Not Attempted"
-      },
-      "defaultValue": "x"
-    }
-  ],
-  "endgame": [
-    { "name": "Docking Timer",
-      "code": "dt",
-      "gsCol": "dockingTime",
-      "type": "timer"
-    },
-    { "name": "Final Status",
-      "code": "fs",
-      "gsCol": "endgameStatus",
-      "type":"radio",
-      "choices": {
-        "p": "Parked<br>",
-        "d": "Docked (Not Engaged)<br>",
-        "e": "Engaged<br>",
-        "a": "Attempted but failed<br>",
-        "x": "Not attempted"
-      },
-      "defaultValue": "x"
-    },
-    { "name": "Total # of alliance<br>robots docked/engaged",
-      "code": "dn",
-      "gsCol": "numOfRobotsDocked",
-      "type": "counter"
-    }
-  ],
-  "postmatch": [
-    { "name": "Driver Skill",
-      "code": "ds",
-      "gsCol": "driverSkill",
-      "type": "radio",
-      "choices": {
-        "n": "Not Effective<br>",
-        "a": "Average<br>",
-        "v": "Very Effective<br>",
-        "x": "Not Observed"
-      },
-      "defaultValue": "x"
-    },
-    { "name": "Links Scored",
-      "code": "ls",
-      "gsCol": "linksScored",
-      "type": "counter"
-    },
-    { "name": "Defense Rating",
-      "code": "dr",
-      "gsCol": "defenseRating",
-      "type": "radio",
-      "choices": {
-        "b": "Below Average<br>",
-        "a": "Average<br>",
-        "g": "Good<br>",
-        "e": "Excellent<br>",
-        "x": "Did not play defense"
-      },
-      "defaultValue": "x"
-    },
-    { "name": "Swerve drive?",
-      "code": "sd",
-      "gsCol": "swerveDrive",
-      "type": "bool"
-    },
-    { "name": "Speed Rating",
-      "code": "sr",
-      "gsCol": "speedRating",
-      "type": "radio",
-      "choices": {
-        "1": "1 (slow)<br>",
-        "2": "2<br>",
-        "3": "3<br>",
-        "4": "4<br>",
-        "5": "5 (fast)"
-      },
-      "defaultValue":"3"
-    },
-    { "name": "Died/Immobilized",
-      "code": "die",
-      "gsCol": "diedOrImmobilized",
-      "type": "bool"
-    },
-    { "name": "Tippy<br>(almost tipped over)",
-      "code": "tip",
-      "gsCol": "tippy",
-      "type": "bool"
-    },
-    { "name": "Dropped Cones (>2)",
-      "code": "dc",
-      "gsCol": "droppedCones",
-      "type": "bool"
-    },
-    { "name": "Make good<br>alliance partner?",
-      "tooltip": "Would you want this robot on your alliance in eliminations?",
-      "code": "all",
-      "gsCol": "goodPartners",
-      "type": "bool"
-    },
-    { "name": "Comments",
-      "code": "co",
-      "gsCol": "comments",
-      "type": "text",
-      "size": 15,
-      "maxSize": 50
-    }
-  ]
-}`;
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, maximum-scale=1.0">
+		<title>Scouting PASS</title>
+		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="icon" sizes="16x16 32x32 64x64" href="favicon.ico">
+		<script src="resources/js/easy.qrcode.min.js"></script>
+		<script src="resources/js/TBAInterface.js"></script>
+		<script src="resources/js/googleSheets.js"></script>
+		<script src="resources/js/scoutingPASS.js"></script>
+		<script src="2023/CU_config.js"></script>
+		<link rel="stylesheet" href="resources/css/scoutingPASS.css">
+	</head>
+
+	<body>
+		<form id="scoutingForm" onsubmit="return false">
+			<div id="main-panel-holder">
+				<div id="prematch" class="main-panel" style="background-color: black;">
+					<h1 id="prematchHeader1" class="page_title"><span class="odd">P</span><span class="even">W</span><span class="odd">N</span><span class="even">A</span><span class="odd">G</span><span class="even">E</span><br>Scouting 2020</h1>
+					<h2 id="prematchHeader2">pre-match</h2>
+					<p class="match-label"><input type="button" value="Next" id="nextButton1" onclick="swipePage(1)"></p>
+					<table id="prematch_table" style="font: Roboto">
+					<!-- ###PRE-MATCH-COMPONENTS###-->
+					</table>
+					<p class="match-label"><input type="button" value="Next" id="nextButton2" onclick="swipePage(1)"></p>
+				</div>
+
+				<div id="auton" class="main-panel" style="background-color: rgb(123, 168, 184);">
+					<h1 id="autonHeader" class="page_title"><span class="odd">P</span><span class="even">W</span><span class="odd">n</span><span class="even">A</span><span class="odd">G</span><span class="even">E</span><br>Scouting 2020</h1>
+					<h2 id="autonHeader">Auton</h2>
+					<p class="match-label"><input type="button" value="Prev" id="prevButton1" onclick="swipePage(-1)"><input type="button" value="Next" id="nextButton3" onclick="swipePage(1)"></p>
+					<table id="auton_table">
+					<!-- ###AUTON-COMPONENTS###-->
+					</table>
+					<p class="match-label"><input type="button" value="Prev" id="prevButton2" onclick="swipePage(-1)"> <input type="button" value="Next" id="nextButton4" onclick="swipePage(1)"></p>
+				</div>
+
+				<div id="teleop" class="main-panel" style="background-color: rgb(175, 207, 163);">
+					<h1 id="teleopHeader1" class="page_title"><span class="odd">P</span><span class="even">W</span><span class="odd">n</span><span class="even">A</span><span class="odd">G</span><span class="even">E</span><br>Scouting 2020</h1>
+					<h2 id="teleopHeader2" >Teleop</h2>
+					<p class="match-label"><input type="button" value="Prev" id="prevButton3" onclick="swipePage(-1)"><input type="button" value="Next" id="nextButton5" onclick="swipePage(1)"></p>
+					<table id="teleop_table">
+						<!-- ###TELEOP-COMPONENTS###-->
+					</table>
+					<p class="match-label"><input type="button" value="Prev" id="prevButton4" onclick="swipePage(-1)"> <input type="button" value="Next" id="nextButton6" onclick="swipePage(1)"></p>
+				</div>
+
+				<div id="endgame" class="main-panel" style="background-color: rgb(198, 186, 222);">
+					<h1 id= "endgameHeader" class="page_title"><span class="odd">P</span><span class="even">W</span><span class="odd">n</span><span class="even">A</span><span class="odd">G</span><span class="even">E</span><br>Scouting 2020</h1>
+					<h2 id="endgameHeader">Endgame</h2>
+					<p class="match-label"><input type="button" value="Prev" id="prevButton5" onclick="swipePage(-1)"><input type="button" value="Next" id="nextButton7" onclick="swipePage(1)"></p>
+					<table id="endgame_table">
+						<!-- ###ENDGAME-COMPONENTS###-->
+					</table>
+					<p class="match-label"><input type="button" value="Prev" id="prevButton6" onclick="swipePage(-1)"> <input type="button" value="Next" id="nextButton8" onclick="swipePage(1)"></p>
+				</div>
+
+				<div id="post-match" class="main-panel" style="background-color: rgb(89, 134, 168);">
+					<h1 id="postmatchHeader" class="page_title"><span class="odd">P</span><span class="even">W</span><span class="odd">n</span><span class="even">A</span><span class="odd">G</span><span class="even">E</span><br>Scouting 2020</h1>
+					<h2>Miscellaneous</h2>
+					<p class="match-label"><input type="button" value="Prev" id="prevButton7" onclick="swipePage(-1)"><input type="button" value="Next" id="nextButton9" onclick="swipePage(1)"></p>
+					<table id="postmatch_table">
+						<!-- ###POST-MATCH-COMPONENTS###-->
+					</table>
+					<p class="match-label"><input type="button" value="Prev" id="prevButton8" onclick="swipePage(-1)"> <input type="button" value="Next" id="nextButton10" onclick="swipePage(1)"></p>
+				</div>
+
+				<div id="qr-code" class="main-panel" style="background-color: white;">
+					<h1 id="qrHeader1" class="page_title"><span class="odd">P</span><span class="even">W</span><span class="odd">n</span><span class="even">A</span><span class="odd">G</span><span class="even">E</span><br>Scouting 2020</h1>
+					<h2 id="qrHeader2">Generate QR Code</h2>
+					<p class="match-label"><input type="button" value="Prev" id="prevButton9" onclick="swipePage(-1)"></p>
+					<p id="qr-info"><span id="display_qr-info" style="border: none; text-align: center;"></span></p>
+					<table id="qr-table"><tr><td width="5%">&nbsp;</td><td width="90%">
+						<div id="qrcode" style="text-align:center">
+							<script>
+						// Create QRCode Object
+								qr = new QRCode(document.getElementById("qrcode"), options)
+					</script>
+					</div>
+				</td><td width="5%">&nbsp;</td></tr>
+				<tr><td width="5%">&nbsp;</td><td width="90%">
+					<div>
+						<p id="data" style="text-align:center"></p>
+					</div>
+				</td><td width="5%">&nbsp;</td></tr>
+			</table>
+					<p></p>
+					<p class="match-label"><input type="button" value="Display Data" id="displayButton" onclick="displayData()"><input type="button" value="Copy Data" id="copyButton" onclick="copyData()"></p>
+					<div id="submitButton">
+						<button id="submit" type="submit" class="submitForm">Send to Google Sheets</button>
+					</div>
+					<div id="clearButton">
+						<button type="button" class="clearForm" onclick="clearForm()">Clear Form</button>
+					</div>
+					<br>
+				</div>
+			</div>
+		</body>
+	</form>
+</html>
