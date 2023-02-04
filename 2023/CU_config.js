@@ -12,7 +12,7 @@ var config_data = `
       "required": "true"
     },
     { "name": "Event",
-      "code": "e",
+      "code": "2023TXBEL",
       "type": "event",
       "defaultValue": "2023TXBEL",
       "required": "true",
