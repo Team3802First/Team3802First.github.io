@@ -12,7 +12,7 @@ var config_data = `
       "required": "true"
     },
     { "name": "Event",
-      "code": "2023TXDAL",
+      "code": "e",
       "type": "event",
       "defaultValue": "2023TXDAL",
       "required": "true",
