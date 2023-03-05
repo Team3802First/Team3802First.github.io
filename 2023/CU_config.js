@@ -19,7 +19,7 @@ var config_data = `
       "disabled": "true"
     },
     { "name": "Match Level",
-      "code": "l",
+      "code": "level",
       "type": "level",
       "choices": {
         "qm": "Quals<br>",
@@ -30,14 +30,14 @@ var config_data = `
       "required": "true"
     },
     { "name": "Match #",
-      "code": "m",
+      "code": "match #",
       "type": "match",
       "min": 1,
       "max": 100,
       "required": "true"
     },
     { "name": "Robot",
-      "code": "r",
+      "code": "robt number",
       "type": "robot",
       "choices": {
         "r1": "Red-1",
@@ -50,13 +50,13 @@ var config_data = `
       "required":"true"
     },
     { "name": "Team #",
-      "code": "t",
+      "code": "team #",
       "type": "team",
       "min": 1,
       "max": 99999
     },
     { "name": "Auto Start Position",
-      "code": "as",
+      "code": "Auto Start Position",
       "type": "clickable_image",
       "filename": "2023/field_image.png",
       "clickRestriction": "one",
@@ -65,7 +65,7 @@ var config_data = `
   ],
   "auton": [
     { "name": "Auto Scoring",
-      "code": "asg",
+      "code": "autoScoring",
       "type": "clickable_image",
       "filename": "2023/grid_image.png",
       "dimensions": "9 4",
@@ -76,19 +76,19 @@ var config_data = `
       "shape": "circle 12 black red true"
     },
     { "name": "Crossed Cable",
-      "code": "acc",
+      "code": "Crossed cable",
       "type": "bool"
     },
     { "name": "Crossed Charging Station",
-      "code": "acs",
+      "code": "Crossed Charging Station",
       "type": "bool"
     },
     { "name": "Mobility?",
-      "code": "am",
+      "code": "mobility",
       "type": "bool"
     },
     { "name": "Docked",
-      "code": "ad",
+      "code": "Docked",
       "type":"radio",
       "choices": {
         "d": "Docked (not Engaged)<br>",
@@ -105,7 +105,7 @@ var config_data = `
       "type": "cycle"
     },
     { "name": "Grid Scoring",
-      "code": "tsg",
+      "code": "grid scoring",
       "type": "clickable_image",
       "filename": "2023/grid_image.png",
       "dimensions": "9 4",
@@ -117,27 +117,27 @@ var config_data = `
       "cycleTimer": "tct"
     },
     { "name": "Feeder Count<br>(Fed another bot)",
-      "code": "tfc",
+      "code": "Feeder Count",
       "type": "counter"
     },
     { "name": "Was Fed<br>Game Pieces",
-      "code": "wf",
+      "code": "was fed games pieces",
       "type": "bool"
     },
     { "name": "Was Defended",
-      "code": "wd",
+      "code": "was defended",
       "type": "bool"
     },
     { "name": "Who Defended this bot",
-      "code": "who",
+      "code": "who defended",
       "type": "text"
     },
     { "name": "Smart Placement<br>(creates Links)",
-      "code": "lnk",
+      "code": "Smart Placment (links)",
       "type": "bool"
     },
     { "name": "Floor Pickup",
-      "code": "fpu",
+      "code": "floor pickup",
       "type": "radio",
       "choices": {
         "o": "Cones<br>",
@@ -150,11 +150,11 @@ var config_data = `
   ],
   "endgame": [
     { "name": "Docking Timer",
-      "code": "dt",
+      "code": "docking timer",
       "type": "timer"
     },
     { "name": "Final Status",
-      "code": "fs",
+      "code": "final status",
       "type":"radio",
       "choices": {
         "p": "Parked<br>",
@@ -166,13 +166,13 @@ var config_data = `
       "defaultValue": "x"
     },
     { "name": "Total # of alliance<br>robots docked/engaged",
-      "code": "dn",
+      "code": "Total number of Alliance robotos engaged",
       "type": "counter"
     }
   ],
   "postmatch": [
     { "name": "Driver Skill",
-      "code": "ds",
+      "code": "driver skill",
       "type": "radio",
       "choices": {
         "n": "Not Effective<br>",
@@ -183,11 +183,11 @@ var config_data = `
       "defaultValue": "x"
     },
     { "name": "Links Scored",
-      "code": "ls",
+      "code": "link scored",
       "type": "counter"
     },
     { "name": "Defense Rating",
-      "code": "dr",
+      "code": "Defense Rating",
       "type": "radio",
       "choices": {
         "b": "Below Average<br>",
@@ -199,11 +199,11 @@ var config_data = `
       "defaultValue": "x"
     },
     { "name": "Swerve drive?",
-      "code": "sd",
+      "code": "swerve drive",
       "type": "bool"
     },
     { "name": "Speed Rating",
-      "code": "sr",
+      "code": "Speed Rating",
       "type": "radio",
       "choices": {
         "1": "1 (slow)<br>",
@@ -215,24 +215,24 @@ var config_data = `
       "defaultValue":"3"
     },
     { "name": "Died/Immobilized",
-      "code": "die",
+      "code": "Immobilized",
       "type": "bool"
     },
     { "name": "Tippy<br>(almost tipped over)",
-      "code": "tip",
+      "code": "tiping",
       "type": "bool"
     },
     { "name": "Dropped Cones (>2)",
-      "code": "dc",
+      "code": "dropped cones",
       "type": "bool"
     },
     { "name": "Make good<br>alliance partner?",
       "tooltip": "Would you want this robot on your alliance in eliminations?",
-      "code": "all",
+      "code": "Good alliance partner",
       "type": "bool"
     },
     { "name": "Comments",
-      "code": "co",
+      "code": "comments",
       "type": "text",
       "size": 15,
       "maxSize": 50
